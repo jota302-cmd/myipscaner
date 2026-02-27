@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyIPScaner | ¿Qué sabe Internet de mí?</title>
+    <title>MyIPScaner | Premium Connectivity Audit</title>
     <meta name="description"
-        content="Auditoría de privacidad instantánea. Descubre tu IP y rastro digital con procesamiento 100% local.">
-    <script src="https://cdn.tailwindcss.com"></script>
+        content="Instant privacy audit. Discover your IP and digital footprint with 100% local processing. Optimized for performance and security.">
+    <!-- AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8167884438770174"
         crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -16,6 +16,7 @@
             --cyan-electric: #06B6D4;
             --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.1);
+            --font-main: 'Inter', sans-serif;
         }
 
         * {
@@ -25,13 +26,14 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-main);
             background-color: #000000;
             color: #ffffff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         .glass {
@@ -41,21 +43,14 @@
             border: 1px solid var(--glass-border);
         }
 
-        .text-cyan-electric {
-            color: var(--cyan-electric);
-        }
-
-        .bg-cyan-electric {
-            background-color: var(--cyan-electric);
-        }
-
-        /* Navbar */
+        /* Navbar & Circular Navigation */
         nav {
             position: sticky;
             top: 0;
-            z-index: 50;
+            z-index: 100;
             padding: 1.25rem 1.5rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.8);
         }
 
         .nav-container {
@@ -69,69 +64,89 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             text-decoration: none;
             color: white;
-            transition: opacity 0.3s;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .logo:hover {
-            opacity: 0.8;
+            transform: scale(1.02);
         }
 
         .logo-box {
-            width: 2rem;
-            height: 2rem;
-            border-radius: 4px;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
             background: var(--cyan-electric);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-weight: 800;
             color: black;
             font-size: 1.25rem;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
         }
 
         .logo-text {
-            font-weight: bold;
+            font-weight: 800;
             font-size: 1.25rem;
             letter-spacing: -0.05em;
+            text-transform: uppercase;
         }
 
-        /* Language Toggle */
+        .text-cyan {
+            color: var(--cyan-electric);
+        }
+
+        /* Language Toggle Hub */
         .lang-toggle {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.375rem 0.75rem;
-            border-radius: 9999px;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
             cursor: pointer;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            border-color: var(--cyan-electric);
+            background: rgba(6, 182, 212, 0.05);
         }
 
         .lang-label {
             font-size: 0.75rem;
-            font-weight: 600;
-            opacity: 0.7;
+            font-weight: 700;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        .lang-label.active {
+            opacity: 1;
+            color: var(--cyan-electric);
         }
 
         .toggle-track {
-            width: 2.5rem;
-            height: 1.25rem;
+            width: 2.25rem;
+            height: 1.125rem;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 9999px;
+            border-radius: 999px;
             position: relative;
-            display: flex;
-            align-items: center;
-            padding: 0 0.125rem;
         }
 
         .toggle-dot {
-            width: 1rem;
-            height: 1rem;
+            width: 0.875rem;
+            height: 0.875rem;
             background: var(--cyan-electric);
-            border-radius: 9999px;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 0.125rem;
+            transform: translateY(-50%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
         }
 
@@ -144,21 +159,22 @@
 
         .ad-slot {
             width: 100%;
-            height: 5.625rem;
-            border-radius: 0.5rem;
+            min-height: 100px;
+            border-radius: 1rem;
             border: 1px dashed rgba(255, 255, 255, 0.1);
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.01);
         }
 
         .ad-slot::after {
-            content: "Ads / Anuncio";
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.2);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            content: "ADVERTISEMENT / ANUNCIO";
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.15);
+            letter-spacing: 3px;
+            font-weight: 600;
         }
 
         /* Main Content */
@@ -166,158 +182,161 @@
             flex-grow: 1;
             max-width: 80rem;
             margin: 0 auto;
-            padding: 0 1.5rem 5rem;
+            padding: 2rem 1.5rem 6rem;
             width: 100%;
         }
 
         header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
 
         h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
         }
 
         .subtitle {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             color: #9ca3af;
-            max-width: 42rem;
+            max-width: 45rem;
             margin: 0 auto;
+            font-weight: 400;
         }
 
-        /* Scan Section */
-        .card-grid {
+        /* Results Grid */
+        .results-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        @media (min-width: 768px) {
-            .card-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            h1 {
-                font-size: 3.75rem;
-            }
+        .feature-card {
+            padding: 2.5rem;
+            border-radius: 2rem;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        @media (min-width: 1024px) {
-            .card-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .data-card {
-            padding: 2rem;
-            border-radius: 1.5rem;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .data-card.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .data-card:hover {
+        .feature-card:hover {
+            transform: translateY(-8px);
             border-color: var(--cyan-electric);
+            box-shadow: 0 20px 40px -20px rgba(6, 182, 212, 0.2);
         }
 
         .card-icon {
-            width: 3rem;
-            height: 3rem;
-            border-radius: 0.75rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 1rem;
             background: rgba(6, 182, 212, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             color: var(--cyan-electric);
         }
 
-        .card-label {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #9ca3af;
+        .card-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--cyan-electric);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
         }
 
-        .card-value {
-            font-size: 1.5rem;
-            font-weight: bold;
+        .card-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             word-break: break-all;
         }
 
-        .status-badge {
+        .status-pill {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
             font-size: 0.75rem;
             font-weight: 700;
-            background: rgba(34, 197, 94, 0.1);
-            color: #22c55e;
-            margin-top: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            margin-top: 1.5rem;
         }
 
-        .status-badge.loading {
-            background: rgba(234, 179, 8, 0.1);
+        .status-pill.loading {
             color: #eab308;
+            background: rgba(234, 179, 8, 0.1);
         }
 
-        .status-badge.error {
-            background: rgba(239, 44, 44, 0.1);
+        .status-pill.success {
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .status-pill.error {
             color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
         }
 
-        /* Footer */
+        /* Footer Hub */
         footer {
+            padding: 4rem 1.5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 3rem 1.5rem;
+            background: rgba(255, 255, 255, 0.01);
         }
 
-        .footer-container {
+        .footer-hub {
             max-width: 80rem;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
+            gap: 3rem;
+        }
+
+        .footer-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
             align-items: center;
             gap: 2rem;
         }
 
-        @media (min-width: 768px) {
-            .footer-container {
-                flex-direction: row;
-                justify-content: space-between;
-            }
+        .brand-info h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
         }
 
-        .footer-links {
+        .brand-info p {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .footer-nav {
             display: flex;
-            gap: 1.5rem;
+            flex-wrap: wrap;
+            gap: 2rem;
         }
 
         .footer-link {
-            font-size: 0.75rem;
+            font-size: 0.875rem;
             color: #9ca3af;
             text-decoration: none;
-            transition: color 0.3s;
             cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
         .footer-link:hover {
             color: var(--cyan-electric);
         }
 
-        /* Modals */
+        /* Modals Glassmorphism */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -325,124 +344,120 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
             z-index: 1000;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem;
+            padding: 1rem;
         }
 
-        .modal-content {
-            max-width: 50rem;
+        .modal-card {
+            max-width: 32rem;
             width: 100%;
-            max-height: 80vh;
-            overflow-y: auto;
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            border-top: 2px solid var(--cyan-electric);
+            border-radius: 2rem;
+            padding: 3rem;
             position: relative;
+            animation: modalIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .close-btn {
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-close {
             position: absolute;
             top: 1.5rem;
             right: 1.5rem;
-            background: none;
+            background: rgba(255, 255, 255, 0.05);
             border: none;
-            color: #9ca3af;
-            cursor: pointer;
+            color: white;
             padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
         }
 
-        .close-btn:hover {
-            color: var(--cyan-electric);
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        /* Support Options */
-        .support-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+        /* Support Buttons */
+        .support-stack {
+            display: flex;
+            flex-direction: column;
             gap: 1rem;
             margin-top: 2rem;
         }
 
-        @media (min-width: 640px) {
-            .support-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .support-btn {
+        .btn-premium {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
-            padding: 1rem;
-            border-radius: 0.75rem;
+            gap: 1rem;
+            padding: 1.25rem;
+            border-radius: 1.25rem;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
             color: white;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s;
         }
 
-        .support-btn.bmc {
-            border: 1px solid rgba(6, 182, 212, 0.3);
-        }
-
-        .support-btn.paypal {
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .support-btn:hover {
+        .btn-premium:hover {
             border-color: var(--cyan-electric);
-            background: rgba(6, 182, 212, 0.1);
+            background: rgba(6, 182, 212, 0.05);
+            transform: translateX(5px);
         }
 
-        .crypto-box {
-            grid-column: 1 / -1;
-            padding: 1rem;
-            border-radius: 0.75rem;
+        .crypto-card {
             background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            border-radius: 1.5rem;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .crypto-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            margin-bottom: 0.5rem;
-            color: #6b7280;
-        }
-
-        .copy-btn {
-            background: rgba(6, 182, 212, 0.1);
-            color: var(--cyan-electric);
-            border: none;
-            padding: 0.25rem 0.75rem;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            font-size: 0.75rem;
-            font-weight: bold;
-        }
-
-        .copy-btn.copied {
-            background: var(--cyan-electric);
-            color: black;
-        }
-
-        .address-text {
-            font-family: monospace;
-            font-size: 0.875rem;
+        .crypto-address {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
             color: var(--cyan-electric);
             word-break: break-all;
+            margin: 1rem 0;
+            padding: 0.75rem;
+            background: rgba(6, 182, 212, 0.05);
+            border-radius: 0.75rem;
+        }
+
+        .copy-trigger {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            border: none;
+            background: var(--cyan-electric);
+            color: black;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 0.875rem;
         }
 
         /* Animations */
-        @keyframes fadeIn {
+        .reveal {
+            animation: revealContent 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes revealContent {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
 
             to {
@@ -451,45 +466,31 @@
             }
         }
 
-        .animate-fade {
-            animation: fadeIn 0.6s ease forwards;
-        }
+        @media (max-width: 640px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
 
-        /* Utils */
-        .hidden {
-            display: none !important;
-        }
-
-        .loader {
-            width: 1.5rem;
-            height: 1.5rem;
-            border: 2px solid rgba(6, 182, 212, 0.1);
-            border-top-color: var(--cyan-electric);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
+            .modal-card {
+                padding: 2rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <nav class="glass">
+    <nav>
         <div class="nav-container">
-            <a href="https://optimicrotools.com" class="logo">
+            <a href="https://optimicrotools.com" class="logo" title="Go to Home / Ir al Inicio">
                 <div class="logo-box">O</div>
-                <span class="logo-text">OPTIMICRO<span class="text-cyan-electric">TOOLS</span></span>
+                <span class="logo-text">OPTIMICRO<span class="text-cyan">TOOLS</span></span>
             </a>
             <div class="lang-toggle" onclick="toggleLanguage()">
-                <span id="lang-label-en" class="lang-label">EN</span>
+                <span id="label-en" class="lang-label">EN</span>
                 <div class="toggle-track">
-                    <div id="toggle-circle" class="toggle-dot"></div>
+                    <div id="toggle-dot" class="toggle-dot"></div>
                 </div>
-                <span id="lang-label-es" class="lang-label">ES</span>
+                <span id="label-es" class="lang-label">ES</span>
             </div>
         </div>
     </nav>
@@ -499,59 +500,59 @@
     </div>
 
     <main>
-        <header>
-            <h1 id="hero-title" class="animate-fade">¿Qué sabe <span class="text-cyan-electric">Internet de mí?</span>
-            </h1>
-            <p id="hero-subtitle" class="subtitle animate-fade" style="animation-delay: 0.1s">
-                Auditoría instantánea de tu conexión. 100% privado, procesamiento local.
-            </p>
+        <header class="reveal">
+            <h1 id="hero-title">Connectivity <span class="text-cyan">Intelligence</span></h1>
+            <p id="hero-subtitle" class="subtitle">Complete privacy audit and network footprint analysis. 100%
+                Client-Side Engine.</p>
         </header>
 
-        <div class="card-grid">
-            <!-- IP Card -->
-            <div class="glass data-card show" style="animation-delay: 0.2s">
+        <div class="results-grid">
+            <!-- IP Feature -->
+            <div class="glass feature-card reveal" style="animation-delay: 0.1s">
                 <div class="card-icon">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"
+                        viewBox="0 0 24 24">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                 </div>
-                <div id="lbl-ip" class="card-label">Tu Dirección IP</div>
-                <div id="val-ip" class="card-value">...</div>
-                <div id="status-ip" class="status-badge loading">
-                    <span id="txt-status">Analizando...</span>
+                <div class="card-tag" id="tag-ip">Public Identifier</div>
+                <div class="card-title" id="val-ip">...</div>
+                <div id="status-ip" class="status-pill loading">
+                    <span id="txt-status">Scanning...</span>
                 </div>
             </div>
 
-            <!-- Location Card -->
-            <div class="glass data-card show" style="animation-delay: 0.3s">
+            <!-- ISP Feature -->
+            <div class="glass feature-card reveal" style="animation-delay: 0.2s">
                 <div class="card-icon">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"
+                        viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    </svg>
+                </div>
+                <div class="card-tag" id="tag-isp">Infrastructure</div>
+                <div class="card-title" id="val-isp">...</div>
+            </div>
+
+            <!-- Geolocation Feature -->
+            <div class="glass feature-card reveal" style="animation-delay: 0.3s">
+                <div class="card-icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"
+                        viewBox="0 0 24 24">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                         <circle cx="12" cy="10" r="3" />
                     </svg>
                 </div>
-                <div id="lbl-location" class="card-label">Tu Ubicación</div>
-                <div id="val-location" class="card-value">...</div>
-            </div>
-
-            <!-- ISP Card -->
-            <div class="glass data-card show" style="animation-delay: 0.4s">
-                <div class="card-icon">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path
-                            d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.343 9.414c5.857-5.858 15.355-5.858 21.213 0" />
-                    </svg>
-                </div>
-                <div id="lbl-isp" class="card-label">Proveedor (ISP)</div>
-                <div id="val-isp" class="card-value">...</div>
+                <div class="card-tag" id="tag-loc">Network Location</div>
+                <div class="card-title" id="val-loc">...</div>
             </div>
         </div>
 
-        <div id="error-box" class="glass data-card hidden mt-8 bg-red-500/10 border-red-500/50"
-            style="opacity: 1; transform: none;">
-            <p id="error-msg" class="text-red-500 font-semibold"></p>
-            <button onclick="fetchData()"
-                class="mt-4 px-4 py-2 bg-red-500/20 text-red-500 rounded-lg hover:bg-red-500 hover:text-white transition-all text-sm font-bold">Reintentar</button>
+        <div id="error-hub" class="glass feature-card reveal hidden"
+            style="margin-top: 3rem; background: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.2);">
+            <p id="error-msg" style="color: #ef4444; font-weight: 700;"></p>
+            <button onclick="fetchData()" class="copy-trigger"
+                style="margin-top: 1.5rem; max-width: 200px; background: #ef4444; color: white;">Try Again</button>
         </div>
     </main>
 
@@ -560,204 +561,220 @@
     </div>
 
     <footer>
-        <div class="footer-container">
-            <div>
-                <p class="text-sm font-bold">© 2026 OPTIMICRO<span class="text-cyan-electric">TOOLS</span></p>
-                <p id="footer-tag" class="text-xs text-gray-500 mt-1">Engineered for Performance & Privacy</p>
+        <div class="footer-hub">
+            <div class="footer-top">
+                <div class="brand-info">
+                    <h3>OPTIMICRO<span class="text-cyan">TOOLS</span></h3>
+                    <p id="footer-tag">High-End Performance Micro-Utilities.</p>
+                </div>
+                <div class="footer-nav">
+                    <a onclick="openModal('support')" class="footer-link" id="link-support">Support Project</a>
+                    <a onclick="openModal('contact')" class="footer-link" id="link-contact">Contact</a>
+                    <a onclick="openModal('privacy')" class="footer-link" id="link-privacy">Privacy</a>
+                    <a onclick="openModal('terms')" class="footer-link" id="link-terms">Terms</a>
+                </div>
             </div>
-            <div class="footer-links">
-                <a onclick="openModal('support')" class="footer-link">Support Project</a>
-                <a onclick="openModal('privacy')" class="footer-link" id="link-privacy">Privacy</a>
-                <a onclick="openModal('terms')" class="footer-link" id="link-terms">Terms</a>
+            <div style="text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 2rem;">
+                <p style="font-size: 0.75rem; color: #4b5563; font-weight: 700;">© 2026 OPTIMICROTOOLS • CRAFTED WITH
+                    PRECISION</p>
             </div>
         </div>
     </footer>
 
-    <!-- Modals -->
-    <div id="modal-container" class="modal-overlay" onclick="handleOutsideClick(event)">
-        <div class="modal-content glass">
-            <button class="close-btn" onclick="closeModal()">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <!-- Universal Modal System -->
+    <div id="modal-container" class="modal-overlay" onclick="closeModalOnOutsideClick(event)">
+        <div class="modal-card glass">
+            <button class="modal-close" onclick="closeModal()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <path d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
-            <h2 id="modal-title" class="text-2xl font-bold text-cyan-electric mb-4"></h2>
-            <div id="modal-body" class="text-gray-300 leading-relaxed"></div>
+            <h2 id="modal-title" style="font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem;" class="text-cyan">
+            </h2>
+            <div id="modal-content" style="color: #d1d5db; font-size: 1rem; line-height: 1.7;"></div>
         </div>
     </div>
 
     <script>
         const translations = {
             en: {
-                heroTitle: "What does <span class='text-cyan-electric'>Internet know about me?</span>",
-                heroSubtitle: "Instant audit of your connection. 100% private, local processing.",
-                lblIp: "Your IP Address",
-                lblLocation: "Your Location",
-                lblIsp: "Internet Provider (ISP)",
-                statusScanning: "Analyzing...",
-                statusSafe: "Connection Secure",
-                errorFetch: "We couldn't get your digital footprint. Try again.",
-                footerTag: "Engineered for Performance & Privacy",
-                supportTitle: "Support the Project",
-                supportBody: "Your support keeps this project private, fast, and free. Choose your preferred way to help.",
-                privacyTitle: "Privacy Policy",
-                privacyBody: "Data processing is 100% client-side. We do not store your IP or location data. We use Google AdSense for monetization.",
-                termsTitle: "Terms of Service",
-                termsBody: "This tool is provided 'as is'. Accuracy depends on third-party APIs. We are not responsible for how you use this data.",
-                retry: "Retry",
-                copy: "Copy",
-                copied: "Copied!"
+                heroTitle: "Connectivity <span class='text-cyan'>Intelligence</span>",
+                heroSubtitle: "Complete privacy audit and network footprint analysis. 100% Client-Side Engine.",
+                tagIp: "Public Identifier",
+                tagIsp: "Infrastructure",
+                tagLoc: "Network Location",
+                statusScanning: "Scanning...",
+                statusSafe: "Audit Complete",
+                errorAPI: "Critical error reaching audit nodes. Tap to retry.",
+                linkSupport: "Support Project",
+                linkContact: "Contact",
+                linkPrivacy: "Privacy",
+                linkTerms: "Terms",
+                footerTag: "High-End Performance Micro-Utilities.",
+                modalSupportTitle: "Support the Vision",
+                modalSupportBody: "This tool remains free and private thanks to community support. Choose your contribution method below.",
+                modalContactTitle: "Official Contact",
+                modalContactBody: "Reach out for technical inquiries or collaborations via our official channels.",
+                modalPrivacyTitle: "Privacy Protocol",
+                modalPrivacyBody: "We operate on a zero-persistence policy. No IP logs, no tracking. Local processing ensures your digital footprint remains yours.",
+                modalTermsTitle: "Usage Protocol",
+                modalTermsBody: "Tools are provided for diagnostic purposes. Accuracy depends on global BGP nodes. User assumes full liability for data interpretation.",
+                btnCopy: "Copy Address",
+                btnCopied: "Copied!",
+                retry: "Tap to Retry"
             },
             es: {
-                heroTitle: "¿Qué sabe <span class='text-cyan-electric'>Internet de mí?</span>",
-                heroSubtitle: "Auditoría instantánea de tu conexión. 100% privado, procesamiento local.",
-                lblIp: "Tu Dirección IP",
-                lblLocation: "Tu Ubicación",
-                lblIsp: "Proveedor de Internet (ISP)",
-                statusScanning: "Analizando...",
-                statusSafe: "Conexión Segura",
-                errorFetch: "No pudimos obtener tu rastro digital. Inténtalo de nuevo.",
-                footerTag: "Diseñado para Rendimiento y Privacidad",
-                supportTitle: "Apoya el Proyecto",
-                supportBody: "Tu apoyo mantiene este proyecto privado, rápido y libre. Elige tu forma preferida de ayudar.",
-                privacyTitle: "Política de Privacidad",
-                privacyBody: "El procesamiento de datos es 100% en el cliente. No guardamos tu IP ni ubicación. Usamos Google AdSense para monetización.",
-                termsTitle: "Términos de Servicio",
-                termsBody: "Esta herramienta se entrega 'tal cual'. La precisión depende de APIs de terceros. No somos responsables del uso de estos datos.",
-                retry: "Reintentar",
-                copy: "Copiar",
-                copied: "¡Copiado!"
+                heroTitle: "Inteligencia <span class='text-cyan'>de Conexión</span>",
+                heroSubtitle: "Auditoría completa de privacidad y análisis de rastro de red. Procesamiento Local.",
+                tagIp: "Identificador Público",
+                tagIsp: "Infraestructura",
+                tagLoc: "Ubicación de Red",
+                statusScanning: "Escaneando...",
+                statusSafe: "Auditoría Completa",
+                errorAPI: "Error crítico al contactar nodos de auditoría. Reintentar.",
+                linkSupport: "Apoyar Proyecto",
+                linkContact: "Contacto",
+                linkPrivacy: "Privacidad",
+                linkTerms: "Términos",
+                footerTag: "Micro-utilidades de Alto Rendimiento.",
+                modalSupportTitle: "Apoya la Visión",
+                modalSupportBody: "Esta herramienta se mantiene libre y privada gracias a la comunidad. Elige tu método de contribución.",
+                modalContactTitle: "Contacto Oficial",
+                modalContactBody: "Contáctanos para consultas técnicas o colaboraciones mediante canales oficiales.",
+                modalPrivacyTitle: "Protocolo de Privacidad",
+                modalPrivacyBody: "Operamos bajo política de cero persistencia. Sin registros de IP. El procesamiento local garantiza tu privacidad.",
+                modalTermsTitle: "Protocolo de Uso",
+                modalTermsBody: "Herramientas provistas para diagnóstico. La precisión depende de nodos BGP globales. El usuario asume total responsabilidad.",
+                btnCopy: "Copiar Dirección",
+                btnCopied: "¡Copiado!",
+                retry: "Reintentar"
             }
         };
 
-        let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('es') ? 'es' : 'en');
-        const API_TIMEOUT = 5000;
+        let currentLang = localStorage.getItem('om_lang') || (navigator.language.startsWith('es') ? 'es' : 'en');
 
         function updateUI() {
             const t = translations[currentLang];
             document.getElementById('hero-title').innerHTML = t.heroTitle;
             document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
-            document.getElementById('lbl-ip').textContent = t.lblIp;
-            document.getElementById('lbl-location').textContent = t.lblLocation;
-            document.getElementById('lbl-isp').textContent = t.lblIsp;
+            document.getElementById('tag-ip').textContent = t.tagIp;
+            document.getElementById('tag-isp').textContent = t.tagIsp;
+            document.getElementById('tag-loc').textContent = t.tagLoc;
+            document.getElementById('link-support').textContent = t.linkSupport;
+            document.getElementById('link-contact').textContent = t.linkContact;
+            document.getElementById('link-privacy').textContent = t.linkPrivacy;
+            document.getElementById('link-terms').textContent = t.linkTerms;
             document.getElementById('footer-tag').textContent = t.footerTag;
-            document.getElementById('link-privacy').textContent = t.privacyTitle.split(' ')[0];
-            document.getElementById('link-terms').textContent = t.termsTitle.split(' ')[0];
 
-            const circle = document.getElementById('toggle-circle');
-            circle.style.transform = currentLang === 'es' ? 'translateX(1.25rem)' : 'translateX(0)';
-
-            // Refresh scan status text if still loading
-            const statusEl = document.getElementById('txt-status');
-            if (statusEl.getAttribute('data-state') === 'loading') {
-                statusEl.textContent = t.statusScanning;
-            } else if (statusEl.getAttribute('data-state') === 'safe') {
-                statusEl.textContent = t.statusSafe;
-            }
+            // Lang Toggle Visuals
+            document.getElementById('label-en').classList.toggle('active', currentLang === 'en');
+            document.getElementById('label-es').classList.toggle('active', currentLang === 'es');
+            document.getElementById('toggle-dot').style.left = currentLang === 'es' ? '1.25rem' : '0.125rem';
         }
 
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'es' : 'en';
-            localStorage.setItem('lang', currentLang);
+            localStorage.setItem('om_lang', currentLang);
             updateUI();
-        }
-
-        async function fetchWithTimeout(url, options = {}) {
-            const controller = new AbortController();
-            const id = setTimeout(() => controller.abort(), API_TIMEOUT);
-            try {
-                const response = await fetch(url, { ...options, signal: controller.signal });
-                clearTimeout(id);
-                return response;
-            } catch (error) {
-                clearTimeout(id);
-                throw error;
+            if (document.getElementById('txt-status').getAttribute('data-state') === 'scanning') {
+                document.getElementById('txt-status').textContent = translations[currentLang].statusScanning;
+            } else if (document.getElementById('txt-status').getAttribute('data-state') === 'safe') {
+                document.getElementById('txt-status').textContent = translations[currentLang].statusSafe;
             }
         }
 
         async function fetchData() {
-            const valIp = document.getElementById('val-ip');
-            const valLoc = document.getElementById('val-location');
-            const valIsp = document.getElementById('val-isp');
-            const statusIp = document.getElementById('status-ip');
             const txtStatus = document.getElementById('txt-status');
-            const errorBox = document.getElementById('error-box');
+            const statusIp = document.getElementById('status-ip');
+            const errorHub = document.getElementById('error-hub');
 
+            // Reset UI
             txtStatus.textContent = translations[currentLang].statusScanning;
-            txtStatus.setAttribute('data-state', 'loading');
-            statusIp.className = "status-badge loading";
-            errorBox.classList.add('hidden');
+            txtStatus.setAttribute('data-state', 'scanning');
+            statusIp.className = "status-pill loading";
+            errorHub.classList.add('hidden');
 
             try {
+                let response = await fetch('https://ipapi.co/json/').catch(() => null);
                 let data;
-                try {
-                    // Primary API
-                    const response = await fetchWithTimeout('https://ipapi.co/json/');
-                    if (!response.ok) throw new Error('Primary failed');
+
+                if (response && response.ok) {
                     data = await response.json();
-                } catch (err) {
-                    console.warn("Primary API failed, trying fallback...", err);
-                    // Fallback API
-                    const response = await fetchWithTimeout('https://ip-api.com/json/');
-                    if (!response.ok) throw new Error('Fallback failed');
-                    data = await response.json();
-                    // Map ip-api field names to ipapi.co ones
-                    data.ip = data.query;
-                    data.org = data.isp;
+                } else {
+                    // Fallback IP-API
+                    response = await fetch('https://ip-api.com/json/');
+                    if (!response.ok) throw new Error('Network Failure');
+                    const raw = await response.json();
+                    data = {
+                        ip: raw.query,
+                        org: raw.isp,
+                        city: raw.city,
+                        country_name: raw.country
+                    };
                 }
 
-                valIp.textContent = data.ip || 'Unknown';
-                valLoc.textContent = data.city ? `${data.city}, ${data.country_name || data.country}` : 'Unknown';
-                valIsp.textContent = data.org || 'Unknown';
+                document.getElementById('val-ip').textContent = data.ip || '0.0.0.0';
+                document.getElementById('val-isp').textContent = data.org || 'Unknown Provider';
+                document.getElementById('val-loc').textContent = `${data.city || 'Private'}, ${data.country_name || 'Earth'}`;
 
                 txtStatus.textContent = translations[currentLang].statusSafe;
                 txtStatus.setAttribute('data-state', 'safe');
-                statusIp.className = "status-badge";
-            } catch (error) {
-                console.error("All APIs failed", error);
-                statusIp.className = "status-badge error";
+                statusIp.className = "status-pill success";
+
+            } catch (err) {
+                console.error("Audit failed:", err);
                 txtStatus.textContent = "Error";
-                txtStatus.setAttribute('data-state', 'error');
-                errorBox.classList.remove('hidden');
-                document.getElementById('error-msg').textContent = translations[currentLang].errorFetch;
+                statusIp.className = "status-pill error";
+                errorHub.classList.remove('hidden');
+                document.getElementById('error-msg').textContent = translations[currentLang].errorAPI;
             }
         }
 
         function openModal(type) {
-            const container = document.getElementById('modal-container');
-            const title = document.getElementById('modal-title');
-            const body = document.getElementById('modal-body');
             const t = translations[currentLang];
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
 
             if (type === 'support') {
-                title.textContent = t.supportTitle;
-                body.innerHTML = `
-                    <p class="mb-6 opacity-80">${t.supportBody}</p>
-                    <div class="support-grid">
-                        <a href="https://www.buymeacoffee.com/jota302" target="_blank" class="support-btn bmc">
-                            <span>☕</span> Buy Me a Coffee
+                title.textContent = t.modalSupportTitle;
+                content.innerHTML = `
+                    <p class="mb-6">${t.modalSupportBody}</p>
+                    <div class="support-stack">
+                        <a href="https://www.buymeacoffee.com/jota302" target="_blank" class="btn-premium">
+                            <span style="font-size: 1.5rem">☕</span> Buy Me a Coffee
                         </a>
-                        <a href="https://paypal.me/jota302" target="_blank" class="support-btn paypal">
-                            <span>💳</span> PayPal
+                        <a href="https://paypal.me/jota302" target="_blank" class="btn-premium">
+                            <span style="font-size: 1.5rem">💳</span> PayPal
                         </a>
-                        <div class="crypto-box">
-                            <div class="crypto-header">
-                                <span>USDT (TRC20)</span>
-                                <button onclick="copyToClipboard('TE95Gtd8qTWnsEcqXxDEoQoKLNg2hMvVtV', this)" class="copy-btn">${t.copy}</button>
-                            </div>
-                            <div class="address-text">TE95Gtd8qTWnsEcqXxDEoQoKLNg2hMvVtV</div>
+                        <div class="crypto-card">
+                            <p style="font-size: 0.75rem; font-weight: 800; color: #6b7280; text-transform: uppercase;">USDT (TRC20)</p>
+                            <div class="crypto-address">TE95Gtd8qTWnsEcqXxDEoQoKLNg2hMvVtV</div>
+                            <button onclick="copyCrypto('TE95Gtd8qTWnsEcqXxDEoQoKLNg2hMvVtV', this)" class="copy-trigger">${t.btnCopy}</button>
                         </div>
                     </div>
                 `;
+            } else if (type === 'contact') {
+                title.textContent = t.modalContactTitle;
+                content.innerHTML = `
+                    <p class="mb-6">${t.modalContactBody}</p>
+                    <div class="support-stack">
+                        <a href="https://x.com/optimicrotools" target="_blank" class="btn-premium">
+                             <span style="font-size: 1.5rem">𝕏</span> Twitter / X
+                        </a>
+                        <a href="mailto:jota302@gmail.com" class="btn-premium">
+                             <span style="font-size: 1.5rem">✉️</span> Email Support
+                        </a>
+                    </div>
+                `;
             } else if (type === 'privacy') {
-                title.textContent = t.privacyTitle;
-                body.textContent = t.privacyBody;
+                title.textContent = t.modalPrivacyTitle;
+                content.textContent = t.modalPrivacyBody;
             } else if (type === 'terms') {
-                title.textContent = t.termsTitle;
-                body.textContent = t.termsBody;
+                title.textContent = t.modalTermsTitle;
+                content.textContent = t.modalTermsBody;
             }
 
-            container.style.display = 'flex';
+            document.getElementById('modal-container').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
 
@@ -766,29 +783,30 @@
             document.body.style.overflow = '';
         }
 
-        function handleOutsideClick(e) {
+        function closeModalOnOutsideClick(e) {
             if (e.target.id === 'modal-container') closeModal();
         }
 
-        function copyToClipboard(text, btn) {
+        function copyCrypto(text, btn) {
             navigator.clipboard.writeText(text).then(() => {
-                const originalText = btn.textContent;
-                btn.textContent = translations[currentLang].copied;
-                btn.classList.add('copied');
+                const prev = btn.textContent;
+                btn.textContent = translations[currentLang].btnCopied;
+                btn.style.background = '#22c55e';
                 setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.classList.remove('copied');
+                    btn.textContent = prev;
+                    btn.style.background = '';
                 }, 2000);
             });
         }
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-
         document.addEventListener('DOMContentLoaded', () => {
             updateUI();
             fetchData();
+        });
+
+        // Esc key listener
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
         });
     </script>
 </body>
