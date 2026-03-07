@@ -159,7 +159,7 @@
 
         .ad-slot {
             width: 100%;
-            min-height: 100px;
+            min-height: 90px;
             border-radius: 1rem;
             border: 1px dashed rgba(255, 255, 255, 0.1);
             display: flex;
@@ -554,6 +554,49 @@
             <button onclick="fetchData()" class="copy-trigger"
                 style="margin-top: 1.5rem; max-width: 200px; background: #ef4444; color: white;">Try Again</button>
         </div>
+
+        <!-- Technical Insights Section -->
+        <section class="glass reveal"
+            style="margin-top: 4rem; padding: 3rem; border-radius: 2rem; animation-delay: 0.4s;">
+            <h2 id="about-title"
+                style="color: var(--cyan-electric); font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem;"></h2>
+            <p id="about-desc" style="color: #9ca3af; margin-bottom: 2rem; font-size: 1.1rem;"></p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem;">
+                <div>
+                    <h3
+                        style="color: white; font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; border-left: 3px solid var(--cyan-electric); padding-left: 1rem;">
+                        Usage Guide</h3>
+                    <ul style="list-style: none; color: #9ca3af; display: flex; flex-direction: column; gap: 0.75rem;">
+                        <li id="step-1" style="display: flex; gap: 0.5rem;"><span
+                                style="color: var(--cyan-electric); font-weight: 800;">01.</span></li>
+                        <li id="step-2" style="display: flex; gap: 0.5rem;"><span
+                                style="color: var(--cyan-electric); font-weight: 800;">02.</span></li>
+                        <li id="step-3" style="display: flex; gap: 0.5rem;"><span
+                                style="color: var(--cyan-electric); font-weight: 800;">03.</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 id="security-title"
+                        style="color: white; font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; border-left: 3px solid var(--cyan-electric); padding-left: 1rem;">
+                    </h3>
+                    <p id="security-desc" style="color: #9ca3af; font-size: 0.95rem;"></p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05);">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div>
+                        <h4 id="faq-1-q" style="color: white; font-weight: 700; margin-bottom: 0.5rem;"></h4>
+                        <p id="faq-1-a" style="color: #6b7280; font-size: 0.9rem;"></p>
+                    </div>
+                    <div>
+                        <h4 id="faq-2-q" style="color: white; font-weight: 700; margin-bottom: 0.5rem;"></h4>
+                        <p id="faq-2-a" style="color: #6b7280; font-size: 0.9rem;"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <div class="ad-container">
@@ -621,7 +664,18 @@
                 modalTermsBody: "Tools are provided for diagnostic purposes. Accuracy depends on global BGP nodes. User assumes full liability for data interpretation.",
                 btnCopy: "Copy Address",
                 btnCopied: "Copied!",
-                retry: "Tap to Retry"
+                retry: "Tap to Retry",
+                aboutTitle: "Technical Insights: How MyIPScaner Works",
+                aboutDesc: "MyIPScaner is a high-performance connectivity audit tool designed to provide instant transparency regarding your digital footprint. By querying decentralized network nodes, it extracts your public IP, ISP details, and geographic routing without compromising your anonymity. It optimizes workflows for developers, sysadmins, and privacy-conscious users by delivering a sanitized view of their connection's external metadata in milliseconds.",
+                step1: "Interaction: The tool initiates an automatic scan upon loading the interface.",
+                step2: "Configuration: Users can toggle between languages or manually refresh the audit nodes.",
+                step3: "Export: View and analyze results instantly within the premium glassmorphism dashboard.",
+                securityTitle: "Security & Privacy",
+                securityDesc: "This tool utilizes Client-Side Processing (JavaScript). All network requests are made directly from your browser to valid audit endpoints; your sensitive data never touches our servers.",
+                faq1Q: "Is my data stored?",
+                faq1A: "No, we use a zero-persistence architecture with no server-side logging.",
+                faq2Q: "How accurate is the location?",
+                faq2A: "Accuracy depends on global BGP routing tables and varies depending on your ISP."
             },
             es: {
                 heroTitle: "Inteligencia <span class='text-cyan'>de Conexión</span>",
@@ -647,7 +701,18 @@
                 modalTermsBody: "Herramientas provistas para diagnóstico. La precisión depende de nodos BGP globales. El usuario asume total responsabilidad.",
                 btnCopy: "Copiar Dirección",
                 btnCopied: "¡Copiado!",
-                retry: "Reintentar"
+                retry: "Reintentar",
+                aboutTitle: "Información Técnica: Cómo Funciona MyIPScaner",
+                aboutDesc: "MyIPScaner es una herramienta de auditoría de conectividad de alto rendimiento diseñada para proporcionar transparencia instantánea sobre su huella digital. Al consultar nodos de red descentralizados, extrae su IP pública, detalles del ISP y enrutamiento geográfico sin comprometer su anonimato. Optimiza los flujos de trabajo para desarrolladores, administradores de sistemas y usuarios preocupados por la privacidad al ofrecer una vista limpia de los metadatos externos de su conexión en milisegundos.",
+                step1: "Interacción: La herramienta inicia un escaneo automático al cargar la interfaz.",
+                step2: "Configuración: Los usuarios pueden cambiar entre idiomas o actualizar manualmente los nodos de auditoría.",
+                step3: "Obtención: Vea y analice los resultados instantáneamente dentro del panel premium de glassmorphism.",
+                securityTitle: "Seguridad y Privacidad",
+                securityDesc: "Esta herramienta utiliza procesamiento del lado del cliente (JavaScript). Todas las solicitudes de red se realizan directamente desde su navegador a puntos finales de auditoría válidos; sus datos confidenciales nunca tocan nuestros servidores.",
+                faq1Q: "¿Se almacenan mis datos?",
+                faq1A: "No, utilizamos una arquitectura de cero persistencia sin registros en el servidor.",
+                faq2Q: "¿Qué tan precisa es la ubicación?",
+                faq2A: "La precisión depende de las tablas de enrutamiento BGP globales y varía según su ISP."
             }
         };
 
@@ -662,9 +727,21 @@
             document.getElementById('tag-loc').textContent = t.tagLoc;
             document.getElementById('link-support').textContent = t.linkSupport;
             document.getElementById('link-contact').textContent = t.linkContact;
-            document.getElementById('link-privacy').textContent = t.linkPrivacy;
             document.getElementById('link-terms').textContent = t.linkTerms;
             document.getElementById('footer-tag').textContent = t.footerTag;
+
+            // Updated Info Section
+            document.getElementById('about-title').textContent = t.aboutTitle;
+            document.getElementById('about-desc').textContent = t.aboutDesc;
+            document.getElementById('step-1').textContent = t.step1;
+            document.getElementById('step-2').textContent = t.step2;
+            document.getElementById('step-3').textContent = t.step3;
+            document.getElementById('security-title').textContent = t.securityTitle;
+            document.getElementById('security-desc').textContent = t.securityDesc;
+            document.getElementById('faq-1-q').textContent = t.faq1Q;
+            document.getElementById('faq-1-a').textContent = t.faq1A;
+            document.getElementById('faq-2-q').textContent = t.faq2Q;
+            document.getElementById('faq-2-a').textContent = t.faq2A;
 
             // Lang Toggle Visuals
             document.getElementById('label-en').classList.toggle('active', currentLang === 'en');
