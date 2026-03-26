@@ -928,6 +928,7 @@
 
         function updateUI() {
             const t = translations[currentLang];
+            document.documentElement.lang = currentLang;
             document.getElementById('hero-title').innerHTML = t.heroTitle;
             document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
             document.getElementById('tag-ip').textContent = t.tagIp;
